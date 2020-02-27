@@ -48,14 +48,16 @@ exports.walletspassphrase = {
 
 **After, you can run exchange**
 
+RAW
 ```
 cd ~/opentrade/databaseServer
-[sudo] forever start main.js
+forever start main.js
+
 cd ~/opentrade/accountsserver
-git checkout master
-[sudo] forever start main.js
+forever start main.js
+
 cd  ~/opentrade/server
-[sudo] forever start main.js
+forever start main.js
 ```
 
 In your browser address bar, type https://127.0.0.1
@@ -67,7 +69,7 @@ The first registered user will be exchange administrator.
 
 For each coin you should create ~/.coin/coin.conf file
 
-This is common example for ~/.marycoin/marycoin.conf
+This is common example for ~/.sumcoin/sumcoin.conf
 
 ```
 rpcuser=long_random_string_one
@@ -90,7 +92,7 @@ addnode=5.6.7.8
 Also, you must encrypt your cryptocurrency wallet with this command.
 
 ```
-./marycoin-cli encryptwallet random_long_string_SAME_AS_IN_FILE_private_constants.js
+./sumcoin-cli encryptwallet random_long_string_SAME_AS_IN_FILE_private_constants.js
 
 ```
 *If coin have no "coin-cli" file then try something like "coind" instead*
@@ -101,10 +103,15 @@ Also, you must encrypt your cryptocurrency wallet with this command.
 Add your coin details to OpenTrade
 
 1. Register on exchange. The first registered user will be exchange administrator.
+
 2. Go to "Admin Area" -> "Coins" -> "Add coin"
+
 3. Fill up all fields and click "Confirm"
+
 4. Fill "Minimal confirmations count" and "Minimal balance" and uncheck and check "Coin visible" button
+
 5. Click "Save"
+
 6. Check RPC command for the coin. If it worked then coin was added to the exchange!
 
 All visible coins should be appear in the Wallet. You should create default coin pairs now.
