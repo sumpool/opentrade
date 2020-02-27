@@ -19,7 +19,7 @@ bash install_nvm.sh
 
 nvm install 12.6.0
 
-git clone --recurse-submodules https://github.com/3s3s/opentrade.git
+git clone --recurse-submodules https://github.com/sumpool/opentrade.git
 cd opentrade/accountsserver
 git checkout master
 cd ..
