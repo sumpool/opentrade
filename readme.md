@@ -56,15 +56,15 @@ RAW
 ```
 cd ~/opentrade/databaseServer
 forever start main.js
-cd ..
+cd ../..
 
 cd ~/opentrade/accountsserver
 forever start main.js
-cd ..
+cd ../..
 
 cd  ~/opentrade/server
 forever start main.js
-cd ..
+
 ```
 
 ### Navigate to exchange
