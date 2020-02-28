@@ -34,7 +34,7 @@ npm update
 npm install -g forever
 ```
 
-## Here is an example of the file ~/opentrade/server/modules/private_constants.js Edit with your configs.
+### Here is an example of the file ~/opentrade/server/modules/private_constants.js Edit with your configs.
 ```
 cd server/modules
 nano private_constants.js
@@ -59,6 +59,34 @@ exports.walletspassphrase = {
 
 **You MUST change default value exports.password_private_suffix !**
 
+## Configure your sites name
+Resource:
+https://github.com/sumpool/opentrade/blob/master/server/constants.js
+
+```
+cd ~/opentrade/server
+nano constants.js
+```
+```
+exports.NOREPLY_EMAIL = 'no-reply@DOMAIN.com'; //change no-reply email
+exports.SUPPORT_EMAIL = 'support@DOMAIN.com'; //change to your valid email for support requests
+const DOMAIN = 'localhost'; //Change to your domain name
+```
+
+## Setup mail server
+Resource:
+https://tecadmin.net/install-sendmail-on-ubuntu/
+* Remove Postfix
+```
+sudo systemctl stop postfix
+sudo apt remove postfix && apt purge postfix
+```
+* Install Sendmail
+```
+sudo apt install sendmail
+sudo sendmailconfig
+```
+
 **After modifying, you can run exchange**
 
 RAW
@@ -82,6 +110,8 @@ In your browser address bar, type https://127.0.0.1
 You will see OpenTrade.
 
 The first registered user will be exchange administrator. 
+
+**There is a very high likelihood the mail will go to JUNK BOX!!**
 
 # Add trade pairs
 
@@ -110,7 +140,7 @@ addnode=134.209.173.235
 
 ```
 
-### Encrypt Wallet
+### Encrypt Wallet **NOT ACTUALLY REQUIRED BUT ENCOURAGED**
 Also, you must encrypt your cryptocurrency wallet with this command.
 
 ```
@@ -150,10 +180,6 @@ https://github.com/sumpool/opentrade/blob/master/server/constants.js
 sudo nano opentrade/server/constants.js
 ```
 ```
-exports.NOREPLY_EMAIL = 'no-reply@email.com'; //change no-reply email
-exports.SUPPORT_EMAIL = 'support@email.com'; //change to your valid email for support requests
-const DOMAIN = 'localhost'; //Change to your domain name
-
 exports.TRADE_MAIN_COIN = "Marycoin"; //change Marycoin to your main coin pair
 exports.TRADE_DEFAULT_PAIR = "Litecoin"; //change Litecoin to your default coin pair
 exports.share.TRADE_COMISSION = 0.001; //change trade comission percent
