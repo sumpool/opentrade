@@ -3,22 +3,24 @@
 Live version: https://trade.multicoins.org/
 
 
-Step-by-step install instructions:
+# Step-by-step install instructions:
 
-1. Register on the VPS hosting like this https://m.do.co/c/b7bfce81f64d
+1. Register an account for VPS hosting here: https://m.do.co/c/b7bfce81f64d
+**Using this link will give you a $50 credit on Digital Ocean.**
+
 2. Create "Droplet" Ubuntu 18 x64 / 2GB / 1vCPU / 50 GB SSD
 3. Log in to Droplet over SSH (You will receive a email with IP, username and password)
 
 
-
+## Get the server Dependancies
 ```
 sudo apt-get update
 sudo apt-get install build-essential libssl-dev curl -y
 curl -sL https://raw.githubusercontent.com/creationix/nvm/v0.31.0/install.sh -o install_nvm.sh
 bash install_nvm.sh
-reboot;
+reboot
 ```
-### After Rebooting
+### After Rebooting, install nvm and the exchange source code
 ```
 nvm install 12.6.0
 
@@ -27,12 +29,17 @@ cd opentrade/accountsserver
 git checkout master
 cd ..
 
-sudo npm install 
-sudo npm update
-sudo npm install -g forever
+npm install 
+npm update
+npm install -g forever
 ```
 
 ## Here is an example of the file ~/opentrade/server/modules/private_constants.js Edit with your configs.
+```
+cd server/modules
+nano private_constants.js
+```
+
 ```
 'use strict';
 
