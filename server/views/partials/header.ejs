@@ -12,16 +12,13 @@
               <a class="nav-link" href="/"><%-__('Trade')%></a>
             </li>
             <li class="nav-item active">
-              <a class="nav-link" target="_blank" href="https://mc-ex.multicoins.org"><%-__('Exchange')%></a>
+              <a class="nav-link" target="_blank" href="https://sumcoinprice.com/sumbtc/"><%-__('Rates')%></a>
             </li>
             <li class="nav-item active">
-              <a class="nav-link" target="_blank" href="https://mc-dice.multicoins.org"><%-__('DICE')%></a>
+              <a class="nav-link" target="_blank" href="https://sumfaucet.co"><%-__('Faucet')%></a>
             </li>
             <li class="nav-item active">
-              <a class="nav-link" target="_blank" href="http://mc-faucet.multicoins.org"><%-__('Faucet')%></a>
-            </li>
-            <li class="nav-item active">
-              <a class="nav-link" target="_blank" href="https://forum.marycoin.org/"><%-__('Forum')%></a>
+              <a class="nav-link" target="_blank" href="https://sumnode.io"><%-__('Node')%></a>
             </li>
             <li class="nav-item active">
               <a class="nav-link" href="/API">API</a>
@@ -45,17 +42,17 @@
                 </div>
             </li>
         </ul>
-        
-        <button type="button" id='id-button-lang-en' class="btn btn-outline-success btn-sm m-1">EN</button>
-        <button type="button" id='id-button-lang-ru' class="btn btn-outline-success btn-sm">RU</button>
+
+        <!-- <button type="button" id='id-button-lang-en' class="btn btn-outline-success btn-sm m-1">EN</button>
+        // <button type="button" id='id-button-lang-ru' class="btn btn-outline-success btn-sm">RU</button> -->
     </div>
 </nav>
     <div id="loader" style="display:none;"></div>
     <input id='id_lang' type='hidden' <% var value = 'value="en"'; try{if (lang) value = "value='"+lang+"'"}catch(e){} %> <%- value %>>
 
-    <% var message = ""; 
+    <% var message = "";
         if (!share.tradeEnabled || !share.withdrawEnabled) {
-          message = 
+          message =
             '<div class="container pt-2">'+
               '<div id="alert-fail" class="alert alert-danger alert-dismissible col-md-12" role="alert" >'+
                 '<div id="fail-message">Technical work is carried out. Please be patient. <b>Trading enabled</b>. Withdraw is temporarily disabled</div>'+
