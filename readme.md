@@ -5,18 +5,21 @@ Live version: https://trade.multicoins.org/
 
 Step-by-step install instructions:
 
-1. Register on the VPS hosting like this https://m.do.co/c/1ece5d76d5cd
-2. Create "Droplet" Ubuntu 16 x64 / 1GB / 1vCPU / 25 GB SSD
+1. Register on the VPS hosting like this https://m.do.co/c/b7bfce81f64d
+2. Create "Droplet" Ubuntu 18 x64 / 2GB / 1vCPU / 50 GB SSD
 3. Log in to Droplet over SSH (You will receive a email with IP, username and password)
-4
+
+
 
 ```
-[sudo] apt-get update
-[sudo] apt-get install build-essential libssl-dev curl -y
+sudo apt-get update
+sudo apt-get install build-essential libssl-dev curl -y
 curl -sL https://raw.githubusercontent.com/creationix/nvm/v0.31.0/install.sh -o install_nvm.sh
 bash install_nvm.sh
-[sudo] reboot
-
+reboot
+```
+### After Rebooting
+```
 nvm install 12.6.0
 
 git clone --recurse-submodules https://github.com/sumpool/opentrade.git
@@ -24,8 +27,9 @@ cd opentrade/accountsserver
 git checkout master
 cd ..
 
-[sudo] npm install 
-[sudo] npm install -g forever
+sudo npm install 
+sudo npm update
+sudo npm install -g forever
 ```
 
 ## Here is an example of the file ~/opentrade/server/modules/private_constants.js Edit with your configs.
@@ -46,7 +50,7 @@ exports.walletspassphrase = {
 
 **You MUST change default value exports.password_private_suffix !**
 
-**After, you can run exchange**
+**After modifying, you can run exchange**
 
 RAW
 ```
@@ -60,6 +64,8 @@ cd  ~/opentrade/server
 forever start main.js
 ```
 
+### Navigate to exchange
+
 In your browser address bar, type https://127.0.0.1
 You will see OpenTrade.
 
@@ -72,35 +78,40 @@ For each coin you should create ~/.coin/coin.conf file
 This is common example for ~/.sumcoin/sumcoin.conf
 
 ```
-rpcuser=long_random_string_one
-rpcpassword=long_random_string_two
-rpcport=12345
-rpcclienttimeout=10
-rpcallowip=127.0.0.1
 server=1
 daemon=1
+rpcuser=long_random_string_one
+rpcpassword=long_random_string_two
+rpcport=3332
+rpcclienttimeout=10
+rpcallowip=127.0.0.1
+#rpcallowip=Your_Sumcoin_Daemon_IP
 upnp=0
 rpcworkqueue=1000
 enableaccounts=1
 litemode=1
 staking=0
-addnode=1.2.3.4
-addnode=5.6.7.8
+
+#sumnode.io Map
+addnode=134.209.173.235
+#addnode=ANY_OTHER_NODE_IP
 
 ```
 
+### Encrypt Wallet
 Also, you must encrypt your cryptocurrency wallet with this command.
 
 ```
 ./sumcoin-cli encryptwallet random_long_string_SAME_AS_IN_FILE_private_constants.js
 
 ```
+
 *If coin have no "coin-cli" file then try something like "coind" instead*
 
 *If coin is not supported by encryption (like ZerroCash and it forks) the coin can not be added to OpenTrade.*
 
-
-Add your coin details to OpenTrade
+## Adding Coins to Exchange
+Add coin details to OpenTrade
 
 1. Register on exchange. The first registered user will be exchange administrator.
 
@@ -116,10 +127,16 @@ Add your coin details to OpenTrade
 
 All visible coins should be appear in the Wallet. You should create default coin pairs now.
 
+
+### Creating trade Pairs
 File ~/opentrade/server/constants.js have settings that you can change
 
-https://github.com/3s3s/opentrade/blob/master/server/constants.js
+Resource:
+https://github.com/sumpool/opentrade/blob/master/server/constants.js
 
+```
+sudo nano opentrade/server/constants.js
+```
 ```
 exports.NOREPLY_EMAIL = 'no-reply@email.com'; //change no-reply email
 exports.SUPPORT_EMAIL = 'support@email.com'; //change to your valid email for support requests
@@ -144,7 +161,7 @@ const DEFAULT_PAIR = 'Litecoin'; //change Litecoin to your default coin pair sam
 const TRADE_COMISSION = 0.001;
 ```
 
-After that, you coins should appear on the main page.
+After that, your added coin should appear on the main page.
 
 
 
