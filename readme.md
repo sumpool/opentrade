@@ -51,7 +51,9 @@ exports.SSL_CERT = '../ssl_certificates/fullchain.pem'; //change to your ssl cer
 exports.walletspassphrase = {
     'MC' : 'LONG_RANDOM_STRING2',
     'BTC' : 'LONG_RANDOM_STRING3',
-    'DOGE' : 'LONG_RANDOM_STRING4'
+    'LTC' : 'LONG_RANDOM_STRING4',
+    'SUM' : 'LONG_RANDOM_STRING5',
+    'DOGE' : 'LONG_RANDOM_STRING6'
 };
 ```
 
