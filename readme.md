@@ -140,9 +140,9 @@ addnode=134.209.173.235
 
 ```
 
-### Encrypt Wallet **NOT ACTUALLY REQUIRED BUT ENCOURAGED**
+### Encrypt Wallet 
 Also, you must encrypt your cryptocurrency wallet with this command.
-
+Example:
 ```
 ./sumcoin-cli encryptwallet random_long_string_SAME_AS_IN_FILE_private_constants.js
 
