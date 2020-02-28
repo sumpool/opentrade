@@ -16,13 +16,13 @@ Live version: https://trade.multicoins.org/
 ```
 sudo apt-get update
 sudo apt-get install build-essential libssl-dev curl -y
-curl -sL https://raw.githubusercontent.com/creationix/nvm/v0.33.0/install.sh -o install_nvm.sh
+curl -sL https://raw.githubusercontent.com/creationix/nvm/v0.31.0/install.sh -o install_nvm.sh
 bash install_nvm.sh
 reboot
 ```
 ### After Rebooting, install nvm and the exchange source code
 ```
-nvm install --lts
+nvm install 12.6.0
 
 git clone --recurse-submodules https://github.com/sumpool/opentrade.git
 cd opentrade/accountsserver
