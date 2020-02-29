@@ -107,7 +107,7 @@ forever start main.js
 ### Navigate to exchange
 
 In your browser address bar, type https://127.0.0.1
-You will see OpenTrade.
+You will see SumExchange.
 
 The first registered user will be exchange administrator. 
 
@@ -117,25 +117,42 @@ The first registered user will be exchange administrator.
 
 For each coin you should create ~/.coin/coin.conf file
 
-This is common example for ~/.sumcoin/sumcoin.conf
+This is common example for ~/.sumcoin/sumcoin.conf 
 
 ```
 server=1
 daemon=1
+connect=IP_OF_Exhange_Server
+rpcclienttimeout=20
+rpcport=3332
+
+# Two options
+# localhost below
+rpcallowip=127.0.0.1
+# remote daemon
+#rpcallowip=Your_Sumcoin_Daemon_IP
+
+# Avoid special like !*#@, keep under 30 characters
 rpcuser=long_random_string_one
 rpcpassword=long_random_string_two
-rpcport=3332
-rpcclienttimeout=10
-rpcallowip=127.0.0.1
-#rpcallowip=Your_Sumcoin_Daemon_IP
+
+# Maximum number of inbound or outbound connections
+maxconnections=6
+
+# Turns off known Vulnerability in UPnP
 upnp=0
+
+# Set higher if expecting heavy loads
 rpcworkqueue=1000
+
 enableaccounts=1
 litemode=1
 staking=0
 
-#sumnode.io Map
+# Adds daemon to specific nodes
+# sumnode.io Map
 addnode=134.209.173.235
+
 #addnode=ANY_OTHER_NODE_IP
 
 ```
