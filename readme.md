@@ -125,6 +125,7 @@ daemon=1
 connect=IP_OF_Exhange_Server
 rpcclienttimeout=20
 rpcport=3332
+dbcache=200
 
 # Two options
 # localhost below
