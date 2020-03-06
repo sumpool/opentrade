@@ -1,3 +1,11 @@
+
+.header-fixed thead th{
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0;
+  background: #eee;
+}
+
 pre {
     display: block;
     padding: 9.5px;
@@ -25,13 +33,13 @@ pre {
 }
 
 .dashed_button {
-	border-width:1px; 
+	border-width:1px;
 	border-style: dashed !important;
 }
 
 .api-doc h5 {
   color: #696d73;
-  font-style: italic;  
+  font-style: italic;
 }
 
 .apikeys tr {
@@ -67,12 +75,14 @@ pre {
 .font_14{
   font-size: 14px;
 }
+.font_12{
+  font-size: 12px;
+}
 
 .div-orders {
   overflow-y:auto;
   overflow-x:auto;
-  min-height: 400px;
-  max-height: 400px;
+  height: 320px;
 }
 
 .bd-highlight {
@@ -118,12 +128,12 @@ pre {
 }
 
 @-webkit-keyframes animatebottom {
-  from { bottom:-100px; opacity:0 } 
+  from { bottom:-100px; opacity:0 }
   to { bottom:0px; opacity:1 }
 }
 
-@keyframes animatebottom { 
-  from{ bottom:-100px; opacity:0 } 
+@keyframes animatebottom {
+  from{ bottom:-100px; opacity:0 }
   to{ bottom:0; opacity:1 }
 }
 
