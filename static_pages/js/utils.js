@@ -99,15 +99,68 @@ const storage = {
 
 const utils = 
 {
-    MAIN_COIN: MAIN_COIN,
-    DEFAULT_PAIR: DEFAULT_PAIR,
-    COMISSION: TRADE_COMISSION,
+    //DEFAULT_PAIR: DEFAULT_PAIR,
+    //COMISSION: TRADE_COMISSION,
+    //BTC_PAIRS: SECOND_PAIRS,
     
     OPENTRADE: "OpenTrade",
     USD_NAME: "US Dollar",
     USD_TICKER: "USD",
     RUB_NAME: "Ruble",
     RUB_TICKER: "RUB",
+    
+    GetComission: function()
+    {
+        const base = utils.getMainCoin();
+        const pair = utils.getCurrentPair();
+        
+        for (let key in SECOND_PAIRS)
+        {
+            if (SECOND_PAIRS[key].baseName != base || SECOND_PAIRS[key].coinName != pair)
+                continue;
+            return SECOND_PAIRS[key].trade_comission;
+        }
+        return TRADE_COMISSION;
+    },
+    getMainCoin: function() 
+    {
+        const mainCoin = storage.getItemS("mainCoin");  //mainCoin   MAIN_COIN
+        if (mainCoin && mainCoin.value)
+            return mainCoin.value;
+            
+        return MAIN_COIN;
+    },
+    getMainCoinTicker: function() 
+    {
+        const mainCoin = utils.getMainCoin();
+        const coinNameToTickerItem = storage.getItem('coinNameToTicker');
+
+        const coinNameToTicker = (coinNameToTickerItem != null) ? coinNameToTickerItem.value : {};
+        return coinNameToTicker && coinNameToTicker[utils.getMainCoin()] ? coinNameToTicker[utils.getMainCoin()].ticker || 'FBC' : 'FBC';
+    },
+    setMainCoin: function(name) 
+    {
+        storage.setItemS("mainCoin", name);
+    },
+    getCurrentPair: function()
+    {
+        const base = utils.getMainCoin();
+        
+        const currentPair = storage.getItemS('CurrentPair');
+        const pair = (currentPair != null) ? currentPair.value : DEFAULT_PAIR;
+        
+        return pair;
+        /*const s = SECOND_PAIRS;
+        if (base == MAIN_COIN || !s)
+            return pair;
+            
+        for (let key in SECOND_PAIRS)
+        {
+            if (SECOND_PAIRS[key].baseName == base && SECOND_PAIRS[key].coinName == pair)
+                return pair;
+        }
+        return DEFAULT_PAIR;*/
+    },
     
     IsFiat: function(coin)
     {
@@ -130,6 +183,15 @@ const utils =
     isNumeric: function(n)
     {
         return !isNaN(parseFloat(n)) && isFinite(n);
+    },
+    MakePrice3: function(str)
+    {
+        if (!utils.isNumeric(str))
+            return str;
+            
+        if (str*1 < 1e-6)
+            return (str*1).toFixed(8);
+        return (str*1).toFixed(8);
     },
     MakePrice2: function(str)
     {
@@ -183,21 +245,40 @@ const utils =
           //setTimeout(utils.CreateSocket, 10000);
         };
     },
+    // timeConverter : function (UNIX_timestamp, hideSeconds){
+    //   var a = new Date(UNIX_timestamp);
+    //   var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    //   var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    //   var year = a.getFullYear();
+    //   var month = months[a.getMonth()];
+    //   var date = a.getDate();
+    //   var hour = a.getHours();
+    //   var min = a.getMinutes();
+    //   var sec = a.getSeconds();
+    //   var time = date + ' ' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec ;
+
+    //   if (hideSeconds) 
+    //     time = date + ' ' + month + ' ' + year + ' ' + hour + ':' + min;
+    //   return time;
+    // },
+
     timeConverter : function (UNIX_timestamp, hideSeconds){
       var a = new Date(UNIX_timestamp);
       var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
       var year = a.getFullYear();
-      var month = months[a.getMonth()];
+    //   var month = months[a.getMonth()];
+      var month = a.getMonth()+1;
       var date = a.getDate();
       var hour = a.getHours();
       var min = a.getMinutes();
       var sec = a.getSeconds();
-      var time = date + ' ' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec ;
+      var time = month + '/' +date  + '/' + year + '.' + hour + ':' + min + ':' + sec ;
 
       if (hideSeconds) 
-        time = date + ' ' + month + ' ' + year + ' ' + hour + ':' + min;
+        time = month + '/' + date + '/' + year + '\n ' + hour + ':' + min;
       return time;
     },
+
     alert_fail: function(message) {
         $('#fail-message').html(message);
         $('#alert-fail').show()
